@@ -1,0 +1,17 @@
+# Secretos
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+
+# Sistema
+.DS_Store
+Thumbs.db

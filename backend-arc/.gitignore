@@ -1,0 +1,15 @@
+# Secretos - NUNCA subir el .env real
+.env
+
+# Archivos subidos por usuarios (no son código, son datos runtime)
+/uploads/
+
+# Composer (si en algún momento se agrega composer.json)
+/vendor/
+
+# Logs locales
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db

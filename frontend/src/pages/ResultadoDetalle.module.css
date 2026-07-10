@@ -1,0 +1,21 @@
+.back { margin-bottom: 16px; font-size: 13px; }
+.title { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.meta { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; }
+.topCards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.cardLabel { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+.bigScore { font-size: 20px; margin-bottom: 4px; }
+.pct { font-size: 28px; font-weight: 700; color: var(--text); }
+.sectionTitle { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+.segments { display: flex; flex-direction: column; gap: 10px; }
+.json {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  font-size: 12px;
+  overflow-x: auto;
+  margin-top: 10px;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+  word-break: break-all;
+}

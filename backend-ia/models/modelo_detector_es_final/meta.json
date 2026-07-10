@@ -1,0 +1,10 @@
+{
+  "model_base": "mrm8488/electricidad-small-discriminator",
+  "max_length": 192,
+  "labels": {
+    "0": "humano",
+    "1": "IA"
+  },
+  "quantized": true,
+  "dataset": "OpenAssistant-ES (o respaldo)"
+}

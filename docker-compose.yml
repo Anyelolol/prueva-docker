@@ -1,0 +1,75 @@
+services:
+
+  db:
+    build: ./postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: Plagidec
+      POSTGRES_USER: leaf
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?falta DB_PASSWORD en .env de la raiz}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U leaf -d Plagidec"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    # Sin "ports:" -> Postgres no queda expuesto al host, solo accesible
+    # desde otros containers de esta red. Sacá el comentario de abajo
+    # solo si necesitás conectarte con un cliente SQL desde tu máquina.
+    # ports:
+    #   - "5432:5432"
+
+  backend-ia:
+    build: ./backend-ia
+    restart: unless-stopped
+    environment:
+      SIMILARITY_MODEL_PATH: /app/models/similarity_model/detector_plagio.joblib
+      DETECTOR_MODEL_PATH: /app/models/modelo_detector_es_final
+    # Los modelos pesan <100MB, van commiteados en el repo y se
+    # copian directo en la imagen (Dockerfile) -> no hace falta volumen.
+    # A PROPOSITO sin "ports:": este servicio no debe ser alcanzable
+    # desde fuera del compose, no tiene autenticación propia.
+    expose:
+      - "8000"
+
+  backend-arc:
+    build: ./backend-arc
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      backend-ia:
+        condition: service_started
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: Plagidec
+      DB_USER: leaf
+      DB_PASSWORD: ${DB_PASSWORD:?falta DB_PASSWORD en .env de la raiz}
+      JWT_SECRET: ${JWT_SECRET:?falta JWT_SECRET en .env de la raiz}
+      JWT_TTL: "3600"
+      IA_SERVICE_URL: http://backend-ia:8000
+      UPLOAD_DIR: /var/www/uploads
+    volumes:
+      - uploads-data:/var/www/uploads
+    ports:
+      - "8080:80"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # URL pública desde donde el BROWSER del usuario llega a backend-arc.
+        # Si publicás esto en otro dominio/puerto, cambiá este build-arg
+        # y volvé a buildear (Vite lo hornea en tiempo de build).
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:8080/api}
+    restart: unless-stopped
+    depends_on:
+      - backend-arc
+    ports:
+      - "5173:80"
+
+volumes:
+  db-data:
+  uploads-data:

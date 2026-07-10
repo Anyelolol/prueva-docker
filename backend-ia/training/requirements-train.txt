@@ -1,0 +1,10 @@
+# Dependencias SOLO para re-entrenar el modelo de similitud (train_plagio_es.py).
+# No se instalan en el container de producción (backend-ia/requirements.txt),
+# para no meter peso/deps innecesarias en la imagen que sirve el servicio.
+#
+# Uso: pip install -r requirements-train.txt && python train_plagio_es.py
+datasets==3.1.0
+scikit-learn==1.8.0
+scipy==1.14.1
+joblib==1.5.3
+numpy

@@ -1,0 +1,4 @@
+.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+.title { font-size: 22px; font-weight: 700; }
+.uploadZone { display: flex; align-items: center; gap: 12px; }
+.actions { display: flex; gap: 6px; }

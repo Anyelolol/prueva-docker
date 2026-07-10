@@ -1,0 +1,10 @@
+# Secretos usados por docker-compose
+.env
+
+# Entorno virtual de Python y config de IDE sueltos en la raíz
+.venv/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
