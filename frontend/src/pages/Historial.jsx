@@ -7,7 +7,7 @@ import styles from './Historial.module.css'
 export default function Historial() {
   const { historial, loading, error, cargar } = useHistorial()
   const { docs } = useDocumentos()
-  const nombreDoc = did => docs.find(d => d.did === did)?.nombre_archivo || `Doc #${did}`
+  const nombreDoc = did => docs.find(d => d.did === did)?.nombre_archivo || 'Documento eliminado'
 
   return (
     <div>

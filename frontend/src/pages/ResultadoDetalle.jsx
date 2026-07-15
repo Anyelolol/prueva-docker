@@ -11,7 +11,7 @@ export default function ResultadoDetalle() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const { docs } = useDocumentos()
-  const nombreDoc = did => docs.find(d => d.did === did)?.nombre_original || `Doc #${did}`
+  const nombreDoc = did => docs.find(d => d.did === did)?.nombre_original || 'Documento eliminado'
 
   useEffect(() => {
     plagiarismService.resultado(parseInt(eid))
@@ -29,7 +29,7 @@ export default function ResultadoDetalle() {
   return (
     <div>
       <div className={styles.back}><Link to="/historial">← Historial</Link></div>
-      <h1 className={styles.title}>Evaluación #{ev.eid}</h1>
+      <h1 className={styles.title}>Resultado de evaluación</h1>
       <p className={styles.meta}>{nombreDoc(ev.did)} · {ev.tipo_evaluacion} · {new Date(ev.fecha_evaluacion).toLocaleString()}</p>
 
       <div className={styles.topCards}>

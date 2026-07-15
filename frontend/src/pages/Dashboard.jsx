@@ -79,7 +79,7 @@ export default function Dashboard() {
                 {recientes.map((e, i) => (
                   <tr key={e.eid}>
                     <td><Link to={`/historial/${e.eid}`}>{i + 1}</Link></td>
-                    <td>{docsMap[e.did] || `Doc #${e.did}`}</td>
+                    <td>{docsMap[e.did] || 'Documento eliminado'}</td>
                     <td style={{ color: 'var(--text-muted)', fontSize: 12 }}>{e.tipo_evaluacion}</td>
                     <td><ScoreBadge score={e.score_plagio} /></td>
                     <td><span className={`badge badge-${e.estado === 'completado' ? 'success' : e.estado === 'error' ? 'danger' : 'info'}`}>{e.estado}</span></td>

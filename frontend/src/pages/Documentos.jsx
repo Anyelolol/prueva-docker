@@ -56,7 +56,6 @@ export default function Documentos() {
           <table>
             <thead>
               <tr>
-                <th>#</th>
                 <th>Nombre</th>
                 <th>Tipo</th>
                 <th>Estado</th>
@@ -67,7 +66,6 @@ export default function Documentos() {
             <tbody>
               {docs.map((d, i) => (
                 <tr key={d.did}>
-                  <td style={{ color: 'var(--text-muted)' }}>{i + 1}</td>
                   <td>{d.nombre_archivo}</td>
                   <td style={{ color: 'var(--text-muted)', fontSize: 12 }}>{d.tipo_documento}</td>
                   <td>

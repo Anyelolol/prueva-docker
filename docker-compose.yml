@@ -57,13 +57,7 @@ services:
       - "8080:80"
 
   frontend:
-    build:
-      context: ./frontend
-      args:
-        # URL pública desde donde el BROWSER del usuario llega a backend-arc.
-        # Si publicás esto en otro dominio/puerto, cambiá este build-arg
-        # y volvé a buildear (Vite lo hornea en tiempo de build).
-        VITE_API_URL: ${VITE_API_URL:-http://localhost:8080/api}
+    build: ./frontend
     restart: unless-stopped
     depends_on:
       - backend-arc

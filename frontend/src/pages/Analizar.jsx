@@ -65,7 +65,7 @@ export default function Analizar() {
               <select name="did" value={form.did} onChange={onChange} required>
                 <option value="">— Seleccionar —</option>
                 {docs.map(d => (
-                  <option key={d.did} value={d.did}>{d.nombre_archivo} (#{d.did})</option>
+                  <option key={d.did} value={d.did}>{d.nombre_archivo}</option>
                 ))}
               </select>
             </label>
@@ -76,7 +76,7 @@ export default function Analizar() {
                   <select name="did_referencia" value={form.did_referencia} onChange={onChange}>
                     <option value="">— Seleccionar —</option>
                     {docs.filter(d => String(d.did) !== String(form.did)).map(d => (
-                      <option key={d.did} value={d.did}>{d.nombre_archivo} (#{d.did})</option>
+                      <option key={d.did} value={d.did}>{d.nombre_archivo}</option>
                     ))}
                   </select>
                 </label>
